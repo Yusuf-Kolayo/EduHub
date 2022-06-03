@@ -79,15 +79,17 @@ public class Dashboard implements ActionListener {
         btn_view_mem = new JButton("View"); 
         btn_view_mem.setFocusable(false);
         btn_view_mem.setBounds(12,52,120,30);
+        btn_view_mem.addActionListener(this);
 
         btn_update_mem = new JButton("Edit"); 
         btn_update_mem.setFocusable(false);
         btn_update_mem.setBounds(12,92,120,30);
+        btn_update_mem.addActionListener(this);
 
         btn_delete_mem = new JButton("Delete"); 
         btn_delete_mem.setFocusable(false);
         btn_delete_mem.setBounds(12,132,120,30);
-
+        btn_delete_mem.addActionListener(this);
 
         btn_panel.add(btn_new_mem);
         btn_panel.add(btn_view_mem);
@@ -110,6 +112,7 @@ public class Dashboard implements ActionListener {
         // // Display how many components the content pane has
         // System.out.println("Content Pane has " + comps.length + " components.");
     }
+
 
 
 
@@ -142,6 +145,15 @@ public class Dashboard implements ActionListener {
         }
      }
 
+
+     public static String[] fetchSelectedRow() {
+
+        int selected_row = jtable1.getSelectedRow();
+        String first_name = (String) jtable1.getValueAt(selected_row, 1);
+        return null;
+
+     }
+
     
 
     @Override
@@ -151,7 +163,19 @@ public class Dashboard implements ActionListener {
            new InsertMember();
         }
         if (e.getSource()==btn_view_mem) {
-            new ViewMember();
+            
+            int selected_rows = jtable1.getSelectedRows().length;
+            if (selected_rows==1) { 
+                int selected_row = jtable1.getSelectedRow();
+                String first_name = (String) jtable1.getValueAt(selected_row, 1);
+                System.out.println(selected_row + ": " + first_name );
+    
+                // new ViewMember();
+            } else {
+                JOptionPane.showMessageDialog(null, "You have to select 1 row from the table before viewing!", "FYI", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+           
          }
 
       
