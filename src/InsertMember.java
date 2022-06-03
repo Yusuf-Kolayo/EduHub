@@ -112,19 +112,17 @@ public class InsertMember implements ActionListener {
           String gender = txtGender.getText();
           String email = txtEmail.getText();
           String password = txtPassword.getText();
-
-          // String txtTimeStamp = new java.util.Date();
-          String timestamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new java.util.Date());
+;
+          // String timestamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new java.util.Date());  // this data is now generated in the db only
 
            // Create a SQL string
-           String SQL = "insert into members  (first_name, last_name, gender, email, password, timestamp)  values (" +
+           String SQL = "insert into members  (first_name, last_name, gender, email, password)  values (" +
            "'" + firstName + "'," +
            "'" + lastName + "'," + 
            "'" + gender + "'," + 
            "'" + email + "'," + 
-           "'" + password + "'," +
-           "'" + timestamp + "')";
-           Statement stmt = null;        System.out.println(SQL);
+           "'" + password + "')";
+           Statement stmt = null;       // System.out.println(SQL);
            
             try {
 

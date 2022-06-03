@@ -11,12 +11,12 @@ public class DBConnect {
             // Connect to mysql library
             Class.forName("com.mysql.cj.jdbc.Driver");
             // jdbc:mysql://hostname:port/databasename, server username, server password
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3308/edu_hub","root","");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/edu_hub","root","");
             return conn;
             
         }catch(Exception ex) {
             // If connection fail
-            System.out.println("Erro: " + ex);
+            System.out.println("Error: " + ex);
             return null;
         }
 

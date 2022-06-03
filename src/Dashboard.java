@@ -64,7 +64,7 @@ public class Dashboard implements ActionListener {
 
             },
             new String [] {
-                "ID", "First Name", "Last Name", "Email Address", "Gender"
+                "ID", "First Name", "Last Name", "Email Address", "Gender", "Password"
             }
         ));
         
@@ -131,8 +131,8 @@ public class Dashboard implements ActionListener {
                 String last_name = rs.getString("last_name");
                 String gender = rs.getString("gender");
                 String email = rs.getString("email");
-                // String password = rs.getString("password");
-                Object[] row = { id, first_name,last_name, email, gender };    // System.out.println(fname);
+                String password = rs.getString("password");
+                Object[] row = { id, first_name,last_name, email, gender, password };    // System.out.println(fname);
                 // Insert value to jtable row and column
                 model.addRow(row);
             }
@@ -150,6 +150,9 @@ public class Dashboard implements ActionListener {
         if (e.getSource()==btn_new_mem) {
            new InsertMember();
         }
+        if (e.getSource()==btn_view_mem) {
+            new ViewMember();
+         }
 
       
         
