@@ -9,7 +9,7 @@ public class ViewMember extends JFrame implements ActionListener {
   
     JLabel lblFirstName, lblLastName, lblGender, lblEmail, lblPassword;
     JLabel dpFirstName, dpLastName, dpGender, dpEmail, dpPassword;
-    JButton saveButton, cancelButton;
+    JButton closeButton;
     
     Connection conn = null;
 
@@ -23,7 +23,12 @@ public class ViewMember extends JFrame implements ActionListener {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
    
-       
+       String first_name, last_name, email, gender, password;
+       first_name = Dashboard.selected_fn;
+       last_name = Dashboard.selected_ln;
+       email = Dashboard.selected_em;
+       gender = Dashboard.selected_gd;
+       password = Dashboard.selected_pw;
 
         lblFirstName = new JLabel("First Name");
        lblFirstName.setBounds(26,36, 100,26);
@@ -50,28 +55,26 @@ public class ViewMember extends JFrame implements ActionListener {
       //  lblPassword.setBackground(Color.yellow);
        lblPassword.setOpaque(true);
 
-       dpFirstName = new JLabel();
+       dpFirstName = new JLabel(first_name);
        dpFirstName.setBounds(136,36, 150,26); 
 
-       dpLastName = new JLabel();
+       dpLastName = new JLabel(last_name);
        dpLastName.setBounds(136,76, 150,26);
 
-       dpGender = new JLabel();
+       dpGender = new JLabel(gender);
        dpGender.setBounds(136,116, 150,26);
 
-       dpEmail = new JLabel();
+       dpEmail = new JLabel(email);
        dpEmail.setBounds(136,156, 150,26);
 
-       dpPassword = new JLabel();
+       dpPassword = new JLabel(password);
        dpPassword.setBounds(136,196, 150,26);
 
-       cancelButton = new JButton("Close");
-       cancelButton.setBounds(26,236, 120,30);
-       cancelButton.addActionListener(this);
+       closeButton = new JButton("Close");
+       closeButton.setBounds(166,236, 120,30);
+       closeButton.addActionListener(this);
 
-       saveButton = new JButton("Save");
-       saveButton.setBounds(166,236, 120,30);
-       saveButton.addActionListener(this);
+       
 
 
        // Add all components to the ContentPane
@@ -85,8 +88,7 @@ public class ViewMember extends JFrame implements ActionListener {
        contentPane.add(dpEmail);
        contentPane.add(lblPassword);
        contentPane.add(dpPassword);
-       contentPane.add(cancelButton);
-       contentPane.add(saveButton);
+       contentPane.add(closeButton); 
 
        this.setVisible(true); 
     }
@@ -94,6 +96,15 @@ public class ViewMember extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
+
+        if (e.getSource()==closeButton) {
+            try {
+                dispose();   
+                Dashboard.frm_dashboard.setVisible(true);
+            } catch (Exception ex) {
+                //TODO: handle exception
+            }
+         }
         
     }
 }

@@ -23,6 +23,8 @@ public class Dashboard implements ActionListener {
     JScrollPane jscroll_pane1;
     static JTable jtable1;
 
+    static String selected_id,selected_fn, selected_ln, selected_em, selected_pw, selected_gd;
+
     static Connection conn = null;
     static PreparedStatement PStatement = null;
     static ResultSet rs = null;
@@ -167,10 +169,30 @@ public class Dashboard implements ActionListener {
             int selected_rows = jtable1.getSelectedRows().length;
             if (selected_rows==1) { 
                 int selected_row = jtable1.getSelectedRow();
-                String first_name = (String) jtable1.getValueAt(selected_row, 1);
-                System.out.println(selected_row + ": " + first_name );
-    
-                // new ViewMember();
+                selected_fn = (String) jtable1.getValueAt(selected_row, 1); //  System.out.println(selected_row + ": " + first_name );
+                selected_ln = (String) jtable1.getValueAt(selected_row, 2); 
+                selected_em = (String) jtable1.getValueAt(selected_row, 3);
+                selected_gd = (String) jtable1.getValueAt(selected_row, 4);  
+                selected_pw = (String) jtable1.getValueAt(selected_row, 1); 
+                new ViewMember();
+            } else {
+                JOptionPane.showMessageDialog(null, "You have to select 1 row from the table before viewing!", "FYI", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+           
+         }
+         if (e.getSource()==btn_update_mem) {
+            
+            int selected_rows = jtable1.getSelectedRows().length;
+            if (selected_rows==1) { 
+                int selected_row = jtable1.getSelectedRow();
+                selected_id = (String) jtable1.getValueAt(selected_row, 0);
+                selected_fn = (String) jtable1.getValueAt(selected_row, 1); //  System.out.println(selected_row + ": " + first_name );
+                selected_ln = (String) jtable1.getValueAt(selected_row, 2); 
+                selected_em = (String) jtable1.getValueAt(selected_row, 3);
+                selected_gd = (String) jtable1.getValueAt(selected_row, 4);  
+                selected_pw = (String) jtable1.getValueAt(selected_row, 1); 
+                new UpdateMember();
             } else {
                 JOptionPane.showMessageDialog(null, "You have to select 1 row from the table before viewing!", "FYI", JOptionPane.INFORMATION_MESSAGE);
             }
