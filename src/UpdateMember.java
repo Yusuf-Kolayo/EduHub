@@ -17,7 +17,7 @@ public class UpdateMember extends JFrame implements ActionListener {
 
   
     UpdateMember() {
-        this.setTitle("Welcome to your Dashboard");
+        this.setTitle("Update Member");
         this.setSize(350,350);
         this.setResizable(false);
         Container contentPane = this.getContentPane();
@@ -124,14 +124,7 @@ public class UpdateMember extends JFrame implements ActionListener {
             String password = txtPassword.getText();
             String user_id = Dashboard.selected_id;
             // String timestamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new java.util.Date());  // this data is now generated in the db only
-  
-             // Create a SQL string
-            //  String SQL = "insert into members  (first_name, last_name, gender, email, password)  values (" +
-            //  "'" + firstName + "'," +
-            //  "'" + lastName + "'," + 
-            //  "'" + gender + "'," + 
-            //  "'" + email + "'," + 
-            //  "'" + password + "')";
+   
 
              String SQL = "update members set first_name='"+ firstName +"', last_name='"+ lastName +"', gender='"+ gender + 
                          "', email='"+ email + "', password='"+ password + "' where id='" + user_id + "'";

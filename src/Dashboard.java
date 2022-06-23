@@ -173,7 +173,7 @@ public class Dashboard implements ActionListener {
                 selected_ln = (String) jtable1.getValueAt(selected_row, 2); 
                 selected_em = (String) jtable1.getValueAt(selected_row, 3);
                 selected_gd = (String) jtable1.getValueAt(selected_row, 4);  
-                selected_pw = (String) jtable1.getValueAt(selected_row, 1); 
+                selected_pw = (String) jtable1.getValueAt(selected_row, 5); 
                 new ViewMember();
             } else {
                 JOptionPane.showMessageDialog(null, "You have to select 1 row from the table before viewing!", "FYI", JOptionPane.INFORMATION_MESSAGE);
@@ -191,7 +191,7 @@ public class Dashboard implements ActionListener {
                 selected_ln = (String) jtable1.getValueAt(selected_row, 2); 
                 selected_em = (String) jtable1.getValueAt(selected_row, 3);
                 selected_gd = (String) jtable1.getValueAt(selected_row, 4);  
-                selected_pw = (String) jtable1.getValueAt(selected_row, 1); 
+                selected_pw = (String) jtable1.getValueAt(selected_row, 5); 
                 new UpdateMember();
             } else {
                 JOptionPane.showMessageDialog(null, "You have to select 1 row from the table before viewing!", "FYI", JOptionPane.INFORMATION_MESSAGE);
@@ -200,6 +200,24 @@ public class Dashboard implements ActionListener {
            
          }
 
+         if (e.getSource()==btn_delete_mem) {
+            
+            int selected_rows = jtable1.getSelectedRows().length;
+            if (selected_rows==1) { 
+                int selected_row = jtable1.getSelectedRow();
+                selected_id = (String) jtable1.getValueAt(selected_row, 0);
+                selected_fn = (String) jtable1.getValueAt(selected_row, 1); //  System.out.println(selected_row + ": " + first_name );
+                selected_ln = (String) jtable1.getValueAt(selected_row, 2); 
+                selected_em = (String) jtable1.getValueAt(selected_row, 3);
+                selected_gd = (String) jtable1.getValueAt(selected_row, 4);  
+                selected_pw = (String) jtable1.getValueAt(selected_row, 5); 
+                new DeleteMember();
+            } else {
+                JOptionPane.showMessageDialog(null, "You have to select 1 row from the table before viewing!", "FYI", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+           
+         }
       
         
     } 

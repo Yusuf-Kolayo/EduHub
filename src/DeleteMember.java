@@ -1,21 +1,23 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.Connection;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import javax.swing.*;
 import javax.swing.JFrame;
 
-public class ViewMember extends JFrame implements ActionListener {
+public class DeleteMember extends JFrame implements ActionListener {
   
     JLabel lblFirstName, lblLastName, lblGender, lblEmail, lblPassword;
     JLabel dpFirstName, dpLastName, dpGender, dpEmail, dpPassword;
-    JButton closeButton;
+    JButton cancelButton,deleteButton;
     
     Connection conn = null;
 
   
-    ViewMember() {
-        this.setTitle("Member Profile");
+    DeleteMember() {
+        this.setTitle("Delete Member");
         this.setSize(350,350);
         this.setResizable(false);
         Container contentPane = this.getContentPane();
@@ -70,11 +72,13 @@ public class ViewMember extends JFrame implements ActionListener {
        dpPassword = new JLabel(password);
        dpPassword.setBounds(136,196, 150,26);
 
-       closeButton = new JButton("Close");
-       closeButton.setBounds(166,236, 120,30);
-       closeButton.addActionListener(this);
+       cancelButton = new JButton("Close");
+       cancelButton.setBounds(26,236, 120,30);
+       cancelButton.addActionListener(this);
 
-       
+       deleteButton = new JButton("Confirm Delete");
+       deleteButton.setBounds(166,236, 120,30);
+       deleteButton.addActionListener(this);
 
 
        // Add all components to the ContentPane
@@ -88,7 +92,8 @@ public class ViewMember extends JFrame implements ActionListener {
        contentPane.add(dpEmail);
        contentPane.add(lblPassword);
        contentPane.add(dpPassword);
-       contentPane.add(closeButton); 
+       contentPane.add(cancelButton); 
+       contentPane.add(deleteButton); 
 
        this.setVisible(true); 
     }
@@ -97,7 +102,7 @@ public class ViewMember extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
 
-        if (e.getSource()==closeButton) {
+        if (e.getSource()==cancelButton) {
             try {
                 dispose();   
                 Dashboard.frm_dashboard.setVisible(true);
@@ -105,6 +110,41 @@ public class ViewMember extends JFrame implements ActionListener {
                 //TODO: handle exception
             }
          }
-        
+       
+         if (e.getSource()==deleteButton) {
+            
+            String user_id = Dashboard.selected_id;
+           
+
+             String SQL = "delete from members where id='" + user_id + "'";
+             Statement stmt = null;       // System.out.println(SQL);
+             
+              try {
+  
+                // conn = JDBCUtil.getConnection();
+                conn = DBConnect.DBConnect();
+  
+                stmt = conn.createStatement();
+                stmt.executeUpdate(SQL);
+   
+                JOptionPane.showMessageDialog(null, "Record deleted successfully!", "FYI", JOptionPane.INFORMATION_MESSAGE);
+                 Dashboard.fetch_members();
+                 dispose();
+              } catch (SQLException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+              }
+              finally {
+                  try {
+                    stmt.close();
+                  } catch (SQLException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                  }
+              }
+
+
+
+         }
     }
 }

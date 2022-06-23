@@ -6,6 +6,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Main",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "eduHub_d9f26e5d"
+        },
+        {
+            "type": "java",
+            "name": "Launch timer_test",
+            "request": "launch",
+            "mainClass": "timer_test",
+            "projectName": "eduHub_d9f26e5d"
+        },
+        {
+            "type": "java",
+            "name": "Launch SplashScreen",
+            "request": "launch",
+            "mainClass": "SplashScreen",
+            "projectName": "eduHub_d9f26e5d"
+        },
+        {
+            "type": "java",
             "name": "Launch App",
             "request": "launch",
             "mainClass": "App",
